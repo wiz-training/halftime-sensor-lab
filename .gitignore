@@ -1,0 +1,53 @@
+# Environment Files
+.env
+.env.local
+.env.*.local
+
+# PHP specific
+/vendor/
+*.log
+*.cache
+*.tmp
+
+# Composer files
+/composer.lock
+/composer.phar
+
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+
+# Node.js (if you use it)
+node_modules/
+
+# Logs
+/logs/
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Terraform
+# State files
+*.tfstate
+*.tfstate.*
+# Crash log
+crash.log
+# Terraform plan files
+*.tfplan
+# Exclude local environment overrides
+terraform.tfvars
+terraform.tfvars.json
+.terraform.lock.hcl
+.terraform/
+
+# IDEs and editors
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Miscellaneous
+*.swp
+*.swo

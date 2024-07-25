@@ -1,0 +1,10 @@
+FROM alpine:latest
+
+# Update and install netcat
+RUN apk update && apk add netcat-openbsd
+
+# Expose the port
+EXPOSE 1337
+
+# Command to keep the container running
+CMD ["/bin/sh", "-c", "sleep infinity"]

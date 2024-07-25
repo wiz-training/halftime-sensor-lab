@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcat-service
+spec:
+  selector:
+    app: netcat
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: 1337
+  type: NodePort

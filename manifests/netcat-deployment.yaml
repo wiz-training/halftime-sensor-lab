@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netcat-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netcat
+  template:
+    metadata:
+      labels:
+        app: netcat
+    spec:
+      containers:
+        - name: netcat
+          image: iancrichardson10/alpine:latest
+          ports:
+            - containerPort: 1337
