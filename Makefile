@@ -16,6 +16,7 @@ build-push-nginx:
 
 # Build PHP-FPM image
 build-push-php:
+	./scripts/generate_creds_file.sh
 	docker buildx build --platform linux/amd64,linux/arm64 -t iancrichardson10/php:7.2.10-fpm -f src/Dockerfile.php . --push
 
 # Build Netcat image

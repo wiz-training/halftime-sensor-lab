@@ -2,7 +2,7 @@ resource "aws_instance" "attacker_instance" {
   ami           = "ami-0dc67873410203528"
   instance_type = "t3.large"
   subnet_id     = module.vpc.public_subnets[0]
-  key_name      = "attacker"
+  key_name      = aws_key_pair.attacker_key_pair.key_name
   user_data     = <<-EOF
               #!/bin/bash
 
@@ -35,6 +35,21 @@ resource "aws_instance" "attacker_instance" {
   tags = {
     Name = "Attacker Box"
   }
+}
+
+resource "tls_private_key" "attacker_pem" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
+resource "aws_key_pair" "attacker_key_pair" {
+  key_name   = "attacker_key_pair"
+  public_key = tls_private_key.attacker_pem.public_key_openssh
+}
+
+resource "local_sensitive_file" "private_key" {
+  content  = tls_private_key.attacker_pem.private_key_pem
+  filename = "${path.module}/../attacker.pem"
 }
 
 resource "aws_security_group" "attacker_security_group" {

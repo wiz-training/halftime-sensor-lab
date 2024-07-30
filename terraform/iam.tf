@@ -22,6 +22,13 @@ resource "aws_iam_policy" "s3_read_policy" {
         ]
         Resource = "${aws_s3_bucket.customer_info.arn}/*"
       },
+      {
+        Effect = "Allow",
+        Action = [
+          "s3:ListAllMyBuckets"
+        ],
+        Resource = "*"
+      }
     ]
   })
 }

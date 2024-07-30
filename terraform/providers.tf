@@ -19,3 +19,7 @@ provider "kubernetes" {
 }
 
 provider "random" {}
+
+provider "tls" {}
+
+provider "local" {}

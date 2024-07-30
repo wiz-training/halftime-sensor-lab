@@ -55,6 +55,7 @@ terraform.tfvars.json
 # Secrets
 src/.bash_history
 src/credentials
+attacker.pem
 
 # Generated files
 lab/lab_guide.md
