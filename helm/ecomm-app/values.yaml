@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  nginx:
+    repository: iancrichardson10/nginx
+    tag: latest
+  php:
+    repository: iancrichardson10/php
+    tag: 7.2.10-fpm
+
+serviceAccount:
+  name: ecomm-app-sa
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::534846779113:role/ecomm-eks-irsa-role

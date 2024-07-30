@@ -1,25 +1,36 @@
+variable "region" {
+  default = "us-east-1"
+  type    = string
+}
+
 variable "wiz_k8s_integration_client_id" {
-  description = "The client ID for the Kubernetes integration"
-  sensitive   = false
+  type    = string
+  default = null
 }
 
 variable "wiz_k8s_integration_client_secret" {
-  description = "The client secret for the Kubernetes integration"
-  sensitive   = true
+  type      = string
+  default   = null
+  sensitive = true
 }
 
 variable "wiz_sensor_registry_username" {
-  description = "The username for the Wiz Sensor registry"
-  sensitive   = false
+  type    = string
+  default = null
 }
 
 variable "wiz_sensor_registry_password" {
-  description = "The password for the Wiz Sensor registry"
-  sensitive   = true
+  type      = string
+  default   = null
+  sensitive = true
 }
 
 variable "cluster_name" {
-  description = "The name of the EKS cluster"
-  sensitive   = false
-  default     = "ecomm-app"
+  type    = string
+  default = "ecomm-app-cluster"
+}
+
+variable "profile" {
+  type    = string
+  default = "default"
 }

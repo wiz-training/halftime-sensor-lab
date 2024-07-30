@@ -51,3 +51,7 @@ terraform.tfvars.json
 # Miscellaneous
 *.swp
 *.swo
+
+# Secrets
+src/.bash_history
+src/credentials
