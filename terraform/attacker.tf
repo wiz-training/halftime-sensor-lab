@@ -1,8 +1,36 @@
 resource "aws_instance" "attacker_instance" {
   ami           = "ami-0dc67873410203528"
-  instance_type = "t2.medium"
+  instance_type = "t3.large"
   subnet_id     = module.vpc.public_subnets[0]
   key_name      = "attacker"
+  user_data     = <<-EOF
+              #!/bin/bash
+
+              set -x
+              
+              # Update the package list and install necessary tools
+              yum update -y
+              yum install -y wget tar nc
+
+              # Download the Go binary tarball
+              wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz -P /tmp
+
+              # Remove any previous Go installation
+              rm -rf /usr/local/go
+
+              # Extract the tarball to the installation path
+              tar -C /usr/local -xzf /tmp/go1.22.5.linux-amd64.tar.gz
+
+              # Set up the Go environment variables
+              echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
+              source /etc/profile
+
+              # Verify Go installation
+              go version
+
+              go install github.com/neex/phuip-fpizdam@latest
+
+              EOF
 
   tags = {
     Name = "Attacker Box"
