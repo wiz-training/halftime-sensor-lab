@@ -100,7 +100,16 @@ nc -lv 1337
   Break up the JSON Web Token (JWT) into it's parts
 
   ```sh
-  JWT=$(cat /var/run/secrets/eks.amazonaws.com/serviceaccount/token); IFS='.' read -r header payload signature <<< "$JWT"; echo -e "\nHeader:"; echo "$header" | awk '{print $0 "=="}' | base64 -d | jq .; echo -e "\n"; echo "Payload:"; echo "$payload" | awk '{print $0 "=="}' | base64 -d | jq .; echo -e "\n"; echo "Signature (base64):"; echo "$signature"
+  jwt=$(cat /var/run/secrets/eks.amazonaws.com/serviceaccount/token)
+  header=$(echo "$jwt" | cut -d '.' -f1)
+  payload=$(echo "$jwt" | cut -d '.' -f2)
+  signature=$(echo "$jwt" | cut -d '.' -f3)
+
+  printf "Header:\n"
+  printf "%s" "$header" | tr '_-' '/+' | base64 -d 2>/dev/null || printf "Decoding error\n"
+  printf "\nPayload:\n"
+  printf "%s" "$payload" | tr '_-' '/+' | base64 -d 2>/dev/null || printf "Decoding error\n"
+  printf "\nSignature (Base64):\n%s\n" "$signature"
   ```
 
   Assume Role with the IRSA
