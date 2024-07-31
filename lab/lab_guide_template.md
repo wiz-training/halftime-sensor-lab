@@ -39,6 +39,8 @@
 
 ## Chapter 3: Purple Team Exercise
 
+![Alt text](../diagrams/images/attack-overview.png)
+
 1. Navigate to the web app in the browser and leave the session open:
 
 - [http://${APP_URL}/index.php](http://${APP_URL}/index.php)

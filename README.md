@@ -4,6 +4,10 @@
 
 The purpose of this lab is to dive deep into the capabilities of the Wiz Sensor, both as a defender and an attacker.
 
+## Attack Overview:
+
+![Alt text](diagrams/images/attack-overview.png)
+
 ## Setup:
 
 1. Copy the `.env.template` file
