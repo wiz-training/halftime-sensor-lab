@@ -68,4 +68,3 @@ The `generate_lab_guide.sh` script uses `envsubst` from the `gettext` package. Y
 brew install gettext
 brew link --force gettext
 ```
-End of file. 
