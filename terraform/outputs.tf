@@ -11,9 +11,9 @@ output "secret_access_key" {
   sensitive = true
 }
 
-output "attacker_public_ipv4" {
-  value = aws_instance.attacker_instance.public_ip
-}
+#output "attacker_public_ipv4" {
+#  value = aws_instance.attacker_instance.public_ip
+#}
 
 output "nginx_service_load_balancer_hostname" {
   value = data.kubernetes_service.nginx_service.status[0].load_balancer[0].ingress[0].hostname
