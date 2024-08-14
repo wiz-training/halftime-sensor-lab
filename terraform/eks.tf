@@ -195,11 +195,11 @@ wiz-admission-controller:
 
 resource "helm_release" "ecomm_app" {
   name      = "ecomm-app"
-  chart     = "../helm/ecomm-app" # Path to the local Helm chart
+  chart     = "../helm/ecomm-app"
   namespace = "default"
 
   values = [
-    file("../helm/ecomm-app/values.yaml") # Path to your values.yaml file
+    file("../helm/ecomm-app/values.yaml")
   ]
 
   set {
