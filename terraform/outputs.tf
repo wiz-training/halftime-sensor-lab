@@ -19,6 +19,10 @@ output "nginx_service_load_balancer_hostname" {
   value = data.kubernetes_service.nginx_service.status[0].load_balancer[0].ingress[0].hostname
 }
 
+output "app_url" {
+  value = "http://${data.kubernetes_service.nginx_service.status[0].load_balancer[0].ingress[0].hostname}/index.php"
+}
+
 output "web_app_bucket_name" {
   value = aws_s3_bucket.web_images.bucket
 }
