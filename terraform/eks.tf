@@ -95,16 +95,8 @@ resource "aws_iam_role_policy" "irsa_policy" {
   })
 }
 
-resource "null_resource" "wait_for_eks" {
-  provisioner "local-exec" {
-    command = <<EOT
-    while ! aws eks describe-cluster --name ${module.eks.cluster_name} --query "cluster.status" --output text | grep -q "ACTIVE"; do
-      echo "Waiting for EKS cluster to be active..."
-      sleep 30
-    done
-    echo "EKS cluster is active!"
-    EOT
-  }
+resource "time_sleep" "wait" {
+  create_duration = "30s"
 
   depends_on = [module.eks]
 }
@@ -117,7 +109,7 @@ resource "kubernetes_namespace" "wiz_namespace" {
     }
   }
 
-  depends_on = [null_resource.wait_for_eks]
+  depends_on = [time_sleep.wait]
 }
 
 resource "kubernetes_secret" "sensor_image_pull" {
