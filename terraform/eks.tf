@@ -207,6 +207,6 @@ resource "helm_release" "ecomm_app" {
     value = aws_iam_role.irsa_role.arn
   }
 
-  depends_on = [module.eks]
+  depends_on = [time_sleep.wait]
 }
 
