@@ -36,3 +36,8 @@ resource "aws_s3_object" "web_images_file_upload" {
   source       = "${path.module}/staging/web_images/${each.value}"
   content_type = each.value
 }
+
+resource "aws_s3_bucket" "attacker_exfil" {
+  bucket        = "attacker-exfil-bucket-${random_string.uid.result}"
+  force_destroy = true
+}
