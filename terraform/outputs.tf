@@ -27,9 +27,9 @@ output "web_app_bucket_name" {
   value = aws_s3_bucket.web_images.bucket
 }
 
-output "customer_info_bucket_name" {
-  value = aws_s3_bucket.customer_info.bucket
-}
+# output "customer_info_bucket_name" {
+#   value = aws_s3_bucket.customer_info.bucket
+# }
 
 output "irsa_role_arn" {
   value = aws_iam_role.irsa_role.arn
