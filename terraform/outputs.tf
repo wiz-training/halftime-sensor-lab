@@ -34,3 +34,7 @@ output "web_app_bucket_name" {
 output "irsa_role_arn" {
   value = aws_iam_role.irsa_role.arn
 }
+
+output "attacker_exfil_bucket" {
+  value = aws_s3_bucket.attacker_exfil.bucket
+}
